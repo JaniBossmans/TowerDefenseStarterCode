@@ -1,0 +1,50 @@
+.button {
+    margin-top: 1px;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    -unity-font: url('project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=e8d8d46cd1af4d440981456019001e31&type=3#NotInter-Regular');
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.67);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.button:active {
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-text-outline-color: rgba(255, 255, 255, 0);
+}
+
+.button:hover {
+    background-color: rgba(60, 60, 60, 0.58);
+}
+
+.screen {
+    flex-grow: 1;
+    background-color: rgba(0, 0, 0, 0.59);
+    bottom: auto;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-self: auto;
+    align-items: center;
+    width: auto;
+    height: auto;
+}
