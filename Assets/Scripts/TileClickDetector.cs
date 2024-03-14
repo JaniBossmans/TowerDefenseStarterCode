@@ -88,5 +88,6 @@ public class TileClickDetector : MonoBehaviour
         {
             SelectedSite = null;
         }
+        GameManager.Instance.SelectSite(SelectedSite);
     }
 }

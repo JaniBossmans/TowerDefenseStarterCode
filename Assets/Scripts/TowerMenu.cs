@@ -13,6 +13,8 @@ public class TowerMenu : MonoBehaviour
 
     private VisualElement root;
 
+    private ConstructionSite selectedSite;
+
     void Start()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -101,6 +103,61 @@ public class TowerMenu : MonoBehaviour
         if (destroyButton != null)
         {
             destroyButton.clicked -= OnArcherButtonClicked;
+        }
+    }
+
+    public void SetSite(ConstructionSite site)
+    {
+        selectedSite = site;
+
+        if (selectedSite == null)
+        {
+            root.visible = false;
+            return;
+        }
+        else
+        {
+            root.visible = true;
+            EvaluateMenu();
+        }
+    }
+
+    public void EvaluateMenu()
+    {
+        if (selectedSite == null)
+        {
+            return; // Vroegtijdig terugkeren als er geen site geselecteerd is.
+        }
+
+        // Standaard alle knoppen uitschakelen
+        archerButton.SetEnabled(false);
+        swordButton.SetEnabled(false);
+        wizardButton.SetEnabled(false);
+        updateButton.SetEnabled(false);
+        destroyButton.SetEnabled(false);
+
+        switch (selectedSite.Level)
+        {
+            case ConstructionSite.SiteLevel.Onbebouwd:
+                // Als de Level Onbebouwd is, schakel de bouwknoppen in
+                archerButton.SetEnabled(true);
+                swordButton.SetEnabled(true);
+                wizardButton.SetEnabled(true);
+                break;
+
+            case ConstructionSite.SiteLevel.Level1:
+            case ConstructionSite.SiteLevel.Level2:
+                // Als de Level 1 of 2 is, schakel alleen update en vernietig knoppen in
+                updateButton.SetEnabled(true);
+                destroyButton.SetEnabled(true);
+                break;
+
+            case ConstructionSite.SiteLevel.Level3:
+                // Als de Level 3 is, alleen de vernietigknop inschakelen
+                destroyButton.SetEnabled(true);
+                break;
+
+                // Geen default case nodig, tenzij je onvoorziene Levels verwacht
         }
     }
 }

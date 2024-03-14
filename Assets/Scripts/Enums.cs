@@ -17,11 +17,5 @@ public class Enums : MonoBehaviour
         Wizard
     }
 
-    public enum SiteLevel
-    {
-        Onbebouwd,
-        Level1,
-        Level2,
-        Level3
-    }
+   
 }

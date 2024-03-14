@@ -123,6 +123,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &50027875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 50027877}
+  - component: {fileID: 50027878}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &50027877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50027875}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.24113286, y: -0.18020366, z: 0.2121687}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &50027878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50027875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febf8419f5b44a34987b672f38faaab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TowerMenu: {fileID: 160302809}
+  Archers:
+  - {fileID: 6001466120048328860, guid: 9ed02382432ae1c448e9d294c8fa32d6, type: 3}
+  - {fileID: 5801473445219640661, guid: 8479918d9ca79c44b8dfbc64406c849d, type: 3}
+  - {fileID: 2376440202602796224, guid: 26d87e881ae7ac849a1808f92d7cb1bd, type: 3}
+  Swords:
+  - {fileID: 3473740404983189509, guid: 4acfcef0a85b0d449b7172a45b755dab, type: 3}
+  - {fileID: 8110737471631680145, guid: 2c6ba3516cb69a645928a7c95640af78, type: 3}
+  - {fileID: 4627485542104015378, guid: fbcb90613b1398c42b4bca3b57eba1ed, type: 3}
+  Wizards:
+  - {fileID: 5021939217313778000, guid: 89036386e091a604ab0f51ce9415649c, type: 3}
+  - {fileID: 4780562604828687670, guid: f31d17d524f3bf1479de498982742143, type: 3}
+  - {fileID: 664970706498493124, guid: 20e1a95400e0b424fa4ed5b37d66a236, type: 3}
 --- !u!1 &71002218
 GameObject:
   m_ObjectHideFlags: 0
@@ -6115,3 +6172,4 @@ SceneRoots:
   - {fileID: 1162300147}
   - {fileID: 160302811}
   - {fileID: 1206399078}
+  - {fileID: 50027877}

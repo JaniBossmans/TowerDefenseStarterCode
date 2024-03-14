@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class ConstructionSite
 {
-    
+    public enum SiteLevel
+    {
+        Onbebouwd,
+        Level1,
+        Level2,
+        Level3
+    }
 
     public Vector3Int TilePosition { get; private set; }
     public Vector3 WorldPosition { get; private set; }
-    public Enums.SiteLevel Level { get; private set; }
+    public SiteLevel Level { get; private set; }
     public Enums.TowerType TowerType { get; private set; }
 
     private GameObject tower;
@@ -21,7 +27,7 @@ public class ConstructionSite
         tower = null; // Stel de toren in op null
     }
 
-    public void SetTower(GameObject newTower, Enums.SiteLevel level, Enums.TowerType type)
+    public void SetTower(GameObject newTower, SiteLevel level, Enums.TowerType type)
     {
         // Controleer of er al een toren aanwezig is
         if (tower != null)
