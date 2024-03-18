@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class ConstructionSite
 {
-    public enum SiteLevel
-    {
-        Onbebouwd,
-        Level1,
-        Level2,
-        Level3
-    }
+    
 
     public Vector3Int TilePosition { get; private set; }
     public Vector3 WorldPosition { get; private set; }
-    public SiteLevel Level { get; private set; }
+    public Enums.SiteLevel Level { get; private set; }
     public Enums.TowerType TowerType { get; private set; }
 
     private GameObject tower;
@@ -27,7 +21,7 @@ public class ConstructionSite
         tower = null; // Stel de toren in op null
     }
 
-    public void SetTower(GameObject newTower, SiteLevel level, Enums.TowerType type)
+    public void SetTower(GameObject newTower, Enums.SiteLevel level, Enums.TowerType type)
     {
         // Controleer of er al een toren aanwezig is
         if (tower != null)
@@ -43,5 +37,18 @@ public class ConstructionSite
 
         // Optioneel: Je kunt hier ook de positie van de nieuwe toren instellen
          tower.transform.position = WorldPosition;
+    }
+
+    public void RemoveTower()
+    {
+        if (tower != null)
+        {
+            GameObject.Destroy(tower);
+            tower = null; // Verwijder de referentie naar de toren
+        }
+
+        // Reset de eigenschappen van de bouwplaats
+        Level = Enums.SiteLevel.Onbebouwd;
+        TowerType = default; // Gebruik 'default' om de standaardwaarde voor de enum in te stellen, mogelijk Enums.TowerType.None als je zo'n waarde hebt.
     }
 }

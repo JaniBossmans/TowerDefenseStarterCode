@@ -53,4 +53,67 @@ public class GameManager : MonoBehaviour
             Debug.LogError("TowerMenu component is null in GameManager.");
         }
     }
+
+    public void Build(Enums.TowerType type, Enums.SiteLevel level)
+    {
+        // Controleer of er een site geselecteerd is. Zo niet, log een fout en keer terug.
+        if (selectedSite == null)
+        {
+            Debug.LogError("Er is geen bouwplaats geselecteerd. Kan de toren niet bouwen.");
+            return; // Stop de methode hier als er geen site geselecteerd is.
+        }
+
+        GameObject towerPrefab = null;
+
+        // Trek 1 af van de level waarde om de correcte index te krijgen
+        int prefabIndex = (int)level - 1;
+
+        switch (type)
+        {
+            case Enums.TowerType.Archer:
+                towerPrefab = Archers[prefabIndex];
+                break;
+            case Enums.TowerType.Sword:
+                towerPrefab = Swords[prefabIndex];
+                break;
+            case Enums.TowerType.Wizard:
+                towerPrefab = Wizards[prefabIndex];
+                break;
+        }
+
+        if (towerPrefab == null)
+        {
+            Debug.LogError("Geen tower prefab gevonden voor het geselecteerde type en niveau.");
+            return;
+        }
+
+        // Gebruik de WorldPosition van de selectedSite voor het positioneren van de nieuwe toren
+        GameObject tower = Instantiate(towerPrefab, selectedSite.WorldPosition, Quaternion.identity);
+
+        // Gebruik de SetTower methode van de ConstructionSite om de nieuwe toren in te stellen en te configureren
+        selectedSite.SetTower(tower, level, type);
+
+        if (towerMenu != null)
+        {
+            towerMenu.SetSite(null); // Verberg het towerMenu
+        }
+    }
+
+    public void DestroyTower()
+    {
+        if (selectedSite == null)
+        {
+            Debug.LogError("Er is geen bouwplaats geselecteerd. Kan de toren niet verwijderen.");
+            return;
+        }
+
+        // Roep de RemoveTower methode aan van de selectedSite
+        selectedSite.RemoveTower();
+
+        // Verberg het towerMenu als dat nodig is
+        if (towerMenu != null)
+        {
+            towerMenu.SetSite(null);
+        }
+    }
 }

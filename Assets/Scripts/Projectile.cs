@@ -25,19 +25,26 @@ public class Projectile : MonoBehaviour
     {
         if (target == null)
         {
-            // Target no longer exists, destroy the projectile
+            // Doelwit bestaat niet meer, vernietig het projectiel
             Destroy(gameObject);
         }
         else
         {
-            // Move the projectile towards the target
+            // Beweeg het projectiel richting het doelwit
             float step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
-            // Check if the projectile is close enough to the target
+            // Controleer of het projectiel dichtbij genoeg is bij het doelwit
             if (Vector3.Distance(transform.position, target.position) < 0.2f)
             {
-                // Destroy the projectile
+                // Hier, net voordat je het projectiel vernietigt, breng schade toe
+                UFO enemy = target.GetComponent<UFO>(); // Probeer de UFO component van het doelwit te krijgen
+                if (enemy != null) // Controleer of het doelwit daadwerkelijk een UFO is
+                {
+                    enemy.Damage(damage); // Breng schade toe met de schadewaarde van het projectiel
+                }
+
+                // Vernietig het projectiel
                 Destroy(gameObject);
             }
         }

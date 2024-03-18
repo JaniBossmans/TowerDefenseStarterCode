@@ -39,6 +39,19 @@ public class UFO : MonoBehaviour
             Debug.LogError("target is null");
         }
     }
+
+    public void Damage(int damageAmount)
+    {
+        // Verlaag de gezondheidswaarde met de ontvangen schade
+        health -= damageAmount;
+
+        // Controleer of de gezondheid kleiner of gelijk aan nul is
+        if (health <= 0)
+        {
+            // Vernietig de UFO GameObject
+            Destroy(gameObject);
+        }
+    }
 }
         
     
