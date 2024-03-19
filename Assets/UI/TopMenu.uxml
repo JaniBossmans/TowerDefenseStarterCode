@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/TopMenu.uss?fileID=7433441132597879392&amp;guid=6d7c8279dd43eca429528c224899c9cc&amp;type=3#TopMenu" />
+    <ui:VisualElement name="Main-Top-Menu" class="Screen" style="width: 241px; top: -1px; left: 0;">
+        <ui:Label tabindex="-1" text="Wave: 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Wave" class="Text" />
+        <ui:Button text="▶" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Play-Button" class="But" style="border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; height: 32px; width: 54px; -unity-text-outline-color: rgba(255, 0, 0, 0);" />
+        <ui:Label tabindex="-1" text="Credits: 200" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Credits" class="Text" style="position: absolute; top: 3px; left: 99px;" />
+        <ui:Label tabindex="-1" text="Gate Health: 10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Gate-Health" class="Text" style="position: absolute; top: 34px; left: 100px;" />
+    </ui:VisualElement>
+</ui:UXML>

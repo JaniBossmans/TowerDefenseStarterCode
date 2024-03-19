@@ -30,7 +30,7 @@ public class Tower : MonoBehaviour
     {
         // Update the attack timer
         attackTimer += Time.deltaTime;
-
+        
         // Check if it's time to attack
         if (attackTimer >= 1f / attackRate)
         {

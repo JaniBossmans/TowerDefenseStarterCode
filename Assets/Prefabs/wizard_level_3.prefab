@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 3
-  attackRate: 1
-  attackDamage: 1
+  attackRate: 3
+  attackDamage: 30
   attackSize: 1
   bulletPrefab: {fileID: 1329556035077044838, guid: cb86509ab99e8bc4294d3a7e083e46b8, type: 3}
   type: 2
