@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     public List<GameObject> Path2 = new List<GameObject>();
     public List<GameObject> Enemies = new List<GameObject>();
     
+    private int ufoCounter = 0;
 
     private void Awake()
     {
@@ -53,11 +54,12 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnTester", 1f, 1f);
+        // Verwijder of commenteer de volgende regel uit
+        // InvokeRepeating("SpawnTester", 1f, 1f);
     }
 
-    
-    
+
+
     private void SpawnTester()
     {
 
@@ -93,6 +95,40 @@ public class EnemySpawner : MonoBehaviour
         {
             // Als de index buiten de grenzen van het pad ligt, retourneer null
             return null;
+        }
+        
+    }
+    public void StartWave(int number)
+    {
+        ufoCounter = 0; // Reset de teller voor elke nieuwe golf
+
+        switch (number)
+        {
+            case 1:
+                InvokeRepeating("StartWave1", 1f, 1.5f);
+                break;
+                // Voeg hier cases toe voor toekomstige golven
+        }
+    }
+    public void StartWave1()
+    {
+        ufoCounter++;
+
+        if (ufoCounter % 6 <= 1) return; // Laat enkele gaten tussen de spawns
+
+        if (ufoCounter < 30)
+        {
+            SpawnEnemy(0, Enums.Path.Path1);
+        }
+        else
+        {
+            SpawnEnemy(1, Enums.Path.Path1); // De laatste vijand van deze golf is level 2
+        }
+
+        if (ufoCounter > 30)
+        {
+            CancelInvoke("StartWave1"); // Stop deze golf
+            GameManager.Instance.EndWave(); // Laat de GameManager weten dat de golf voorbij is
         }
     }
 }

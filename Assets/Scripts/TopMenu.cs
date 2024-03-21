@@ -51,7 +51,17 @@ public class TopMenu : MonoBehaviour
 
     private void OnPlayButtonClicked()
     {
-        // Start the wave
+        GameManager.Instance.StartWave();
+        playButton.SetEnabled(false);
+    }
+
+    public void EnableWaveButton()
+    {
+        // Zorgt ervoor dat de knop weer interactief is na het beëindigen van een wave
+        if (playButton != null)
+        {
+            playButton.SetEnabled(true);
+        }
     }
 
     private void OnDestroy()

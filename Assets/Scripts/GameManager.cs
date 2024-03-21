@@ -12,14 +12,13 @@ public class GameManager : MonoBehaviour
     public GameObject TopMenu;
     private TopMenu topMenu;
 
+    private ConstructionSite selectedSite;
     public List<GameObject> Archers;
     public List<GameObject> Swords;
     public List<GameObject> Wizards;
 
-    // Variabele voor het bijhouden van de geselecteerde ConstructionSite
-    private ConstructionSite selectedSite;
-
     private int credits = 200, health = 10, currentWave = 0;
+    private bool waveActive = false;
 
     void Awake()
     {
@@ -46,10 +45,34 @@ public class GameManager : MonoBehaviour
         credits = 200;
         health = 10;
         currentWave = 0;
+        waveActive = false; // Zorg ervoor dat waveActive false is bij het starten van het spel
+        UpdateLabels();
+    }
+
+    public void StartWave()
+    {
+        if (!waveActive)
+        {
+            waveActive = true;
+            currentWave++;
+            UpdateLabels();
+            EnemySpawner.instance.StartWave(currentWave);
+        }
+    }
+
+    public void EndWave()
+    {
+        waveActive = false;
+        topMenu.EnableWaveButton();
+    }
+
+    private void UpdateLabels()
+    {
         topMenu.SetCreditsLabel("Credits: " + credits);
         topMenu.SetGateHealthLabel("Health: " + health);
         topMenu.SetWaveLabel("Wave: " + currentWave);
     }
+
 
     public void AttackGate()
     {
