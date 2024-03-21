@@ -13,6 +13,22 @@ public class UFO : MonoBehaviour
     private int pathIndex = 1;
 
 
+    public void Damage(int damageAmount)
+    {
+        // Verlaag de gezondheidswaarde met de ontvangen schade
+        health -= damageAmount;
+
+        // Controleer of de gezondheid kleiner of gelijk aan nul is
+        if (health <= 0)
+        {
+            // Voeg credits toe aan de speler
+            GameManager.Instance.AddCredits(points);
+
+            // Vernietig de UFO GameObject
+            Destroy(gameObject);
+        }
+    }
+
     void Update()
     {
         if (target != null) // Controleer of target niet null is
@@ -28,28 +44,19 @@ public class UFO : MonoBehaviour
                 pathIndex++;
 
                 // Als het doel null is, hebben we het einde van het pad bereikt. 
-                // Vernietig de vijand op dat moment 
+                // Voer een aanval uit op de poort en vernietig de vijand
                 if (target == null)
                 {
+                    GameManager.Instance.AttackGate();
+
+                    // Vernietig de vijand
                     Destroy(gameObject);
                 }
             }
         }
-        else {
-            Debug.LogError("target is null");
-        }
-    }
-
-    public void Damage(int damageAmount)
-    {
-        // Verlaag de gezondheidswaarde met de ontvangen schade
-        health -= damageAmount;
-
-        // Controleer of de gezondheid kleiner of gelijk aan nul is
-        if (health <= 0)
+        else
         {
-            // Vernietig de UFO GameObject
-            Destroy(gameObject);
+            Debug.LogError("target is null");
         }
     }
 }

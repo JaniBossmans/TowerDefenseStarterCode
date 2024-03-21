@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject TowerMenu;
     private TowerMenu towerMenu;
 
+    public GameObject TopMenu;
+    private TopMenu topMenu;
+
     public List<GameObject> Archers;
     public List<GameObject> Swords;
     public List<GameObject> Wizards;
@@ -16,24 +19,78 @@ public class GameManager : MonoBehaviour
     // Variabele voor het bijhouden van de geselecteerde ConstructionSite
     private ConstructionSite selectedSite;
 
-    // Awake is called when the script instance is being loaded
+    private int credits = 200, health = 10, currentWave = 0;
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Maak het persistent tussen scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Zorgt ervoor dat er geen dubbele instanties zijn
+            Destroy(gameObject);
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         towerMenu = TowerMenu.GetComponent<TowerMenu>();
+        topMenu = TopMenu.GetComponent<TopMenu>();
+        StartGame();
+    }
+
+    void StartGame()
+    {
+        credits = 200;
+        health = 10;
+        currentWave = 0;
+        topMenu.SetCreditsLabel("Credits: " + credits);
+        topMenu.SetGateHealthLabel("Health: " + health);
+        topMenu.SetWaveLabel("Wave: " + currentWave);
+    }
+
+    public void AttackGate()
+    {
+        health -= 1;
+        topMenu.SetGateHealthLabel("Health: " + health);
+    }
+
+    public void AddCredits(int amount)
+    {
+        credits += amount;
+        topMenu.SetCreditsLabel("Credits: " + credits);
+        // Hier toekomstige logica voor towerMenu evaluatie
+    }
+
+    public void RemoveCredits(int amount)
+    {
+        credits -= amount;
+        topMenu.SetCreditsLabel("Credits: " + credits);
+        // Hier toekomstige logica voor towerMenu evaluatie
+    }
+
+    public int GetCredits()
+    {
+        return credits;
+    }
+
+    public int GetCost(Enums.TowerType type, Enums.SiteLevel level, bool selling = false)
+    {
+        // Basis kosten bepalen op basis van type en level, dit is een voorbeeld
+        int cost = 100; // Stel dit in op de daadwerkelijke kosten
+
+        // Pas de kosten aan op basis van of het een verkoop is
+        if (selling)
+        {
+            // Verkoopwaarde is bijvoorbeeld de helft van de aankoopprijs
+            return cost / 2;
+        }
+        else
+        {
+            return cost;
+        }
     }
 
     public void SelectSite(ConstructionSite site)
@@ -60,7 +117,28 @@ public class GameManager : MonoBehaviour
         if (selectedSite == null)
         {
             Debug.LogError("Er is geen bouwplaats geselecteerd. Kan de toren niet bouwen.");
-            return; // Stop de methode hier als er geen site geselecteerd is.
+            return;
+        }
+
+        // Logica voor het aanpassen van credits afhankelijk van aankoop of verkoop
+        if (level == Enums.SiteLevel.Onbebouwd)
+        {
+            // Verkooplogica
+            AddCredits(GetCost(type, selectedSite.Level, true));
+        }
+        else
+        {
+            // Aankooplogica
+            int cost = GetCost(type, level);
+            if (GetCredits() >= cost)
+            {
+                RemoveCredits(cost);
+            }
+            else
+            {
+                Debug.LogError("Niet genoeg credits om de toren te bouwen.");
+                return;
+            }
         }
 
         GameObject towerPrefab = null;
@@ -106,6 +184,12 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Er is geen bouwplaats geselecteerd. Kan de toren niet verwijderen.");
             return;
         }
+
+        // Bereken de verkoopwaarde van de toren
+        int sellValue = GetCost(selectedSite.TowerType, selectedSite.Level, selling: true);
+
+        // Voeg de verkoopwaarde toe aan de spelercredits
+        AddCredits(sellValue);
 
         // Roep de RemoveTower methode aan van de selectedSite
         selectedSite.RemoveTower();

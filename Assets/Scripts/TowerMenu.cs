@@ -135,6 +135,9 @@ public class TowerMenu : MonoBehaviour
             return; // Vroegtijdig terugkeren als er geen site geselecteerd is.
         }
 
+        // Haal de beschikbare credits op
+        int availableCredits = GameManager.Instance.GetCredits();
+
         // Standaard alle knoppen uitschakelen
         archerButton.SetEnabled(false);
         swordButton.SetEnabled(false);
@@ -145,16 +148,21 @@ public class TowerMenu : MonoBehaviour
         switch (selectedSite.Level)
         {
             case Enums.SiteLevel.Onbebouwd:
-                // Als de Level Onbebouwd is, schakel de bouwknoppen in
-                archerButton.SetEnabled(true);
-                swordButton.SetEnabled(true);
-                wizardButton.SetEnabled(true);
+                // Als de Level Onbebouwd is, controleer de kosten en schakel de bouwknoppen in indien mogelijk
+                int archerCost = GameManager.Instance.GetCost(Enums.TowerType.Archer, Enums.SiteLevel.Level1);
+                int swordCost = GameManager.Instance.GetCost(Enums.TowerType.Sword, Enums.SiteLevel.Level1);
+                int wizardCost = GameManager.Instance.GetCost(Enums.TowerType.Wizard, Enums.SiteLevel.Level1);
+                archerButton.SetEnabled(availableCredits >= archerCost);
+                swordButton.SetEnabled(availableCredits >= swordCost);
+                wizardButton.SetEnabled(availableCredits >= wizardCost);
                 break;
 
             case Enums.SiteLevel.Level1:
             case Enums.SiteLevel.Level2:
-                // Als de Level 1 of 2 is, schakel alleen update en vernietig knoppen in
-                updateButton.SetEnabled(true);
+                // Als de Level 1 of 2 is, controleer de kosten voor upgraden en schakel update en vernietig knoppen in indien mogelijk
+                Enums.SiteLevel nextLevel = selectedSite.Level + 1;
+                int updateCost = GameManager.Instance.GetCost(selectedSite.TowerType, nextLevel);
+                updateButton.SetEnabled(availableCredits >= updateCost);
                 destroyButton.SetEnabled(true);
                 break;
 
@@ -162,8 +170,6 @@ public class TowerMenu : MonoBehaviour
                 // Als de Level 3 is, alleen de vernietigknop inschakelen
                 destroyButton.SetEnabled(true);
                 break;
-
-                // Geen default case nodig, tenzij je onvoorziene Levels verwacht
         }
     }
 }
