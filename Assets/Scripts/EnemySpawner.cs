@@ -44,6 +44,9 @@ public class EnemySpawner : MonoBehaviour
 
             // Vraag het eerste waypoint aan voor het opgegeven pad
             ufoScript.target = EnemySpawner.instance.RequestTarget(path, 0);
+
+            // Roep AddInGameEnemy aan op de GameManager
+            GameManager.Instance.AddInGameEnemy();
         }
         else
         {

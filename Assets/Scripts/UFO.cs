@@ -24,6 +24,9 @@ public class UFO : MonoBehaviour
             // Voeg credits toe aan de speler
             GameManager.Instance.AddCredits(points);
 
+            // Roep RemoveInGameEnemy aan op de GameManager voordat de UFO wordt vernietigd
+            GameManager.Instance.RemoveInGameEnemy();
+
             // Vernietig de UFO GameObject
             Destroy(gameObject);
         }
@@ -40,14 +43,16 @@ public class UFO : MonoBehaviour
             if (Vector2.Distance(transform.position, target.transform.position) < 0.1f)
             {
                 // Als we dichtbij zijn, vraag dan een nieuw waypoint aan 
-                target = EnemySpawner.instance.RequestTarget(path, pathIndex); // Zorg ervoor dat EnemySpawner.instance correct is geïnitialiseerd
+                target = EnemySpawner.instance.RequestTarget(path, pathIndex);
                 pathIndex++;
 
                 // Als het doel null is, hebben we het einde van het pad bereikt. 
-                // Voer een aanval uit op de poort en vernietig de vijand
                 if (target == null)
                 {
                     GameManager.Instance.AttackGate();
+
+                    // Roep RemoveInGameEnemy aan op de GameManager voordat de vijand wordt vernietigd
+                    GameManager.Instance.RemoveInGameEnemy();
 
                     // Vernietig de vijand
                     Destroy(gameObject);

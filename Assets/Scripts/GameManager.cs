@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private int credits = 200, health = 10, currentWave = 0;
     private bool waveActive = false;
 
+    private int enemyInGameCounter = 0;
+
     void Awake()
     {
         if (Instance == null)
@@ -49,12 +51,35 @@ public class GameManager : MonoBehaviour
         UpdateLabels();
     }
 
+    public void AddInGameEnemy()
+    {
+        enemyInGameCounter++;
+    }
+
+    public void RemoveInGameEnemy()
+    {
+        enemyInGameCounter--;
+        if (!waveActive && enemyInGameCounter <= 0)
+        {
+            if (!waveActive && enemyInGameCounter <= 0) 
+            {
+                // Logica voor het einde van de game
+            }
+            else
+            {
+                // Activeer de wave button in het top menu
+                topMenu.EnableWaveButton();
+            }
+        }
+    }
+
     public void StartWave()
     {
         if (!waveActive)
         {
             waveActive = true;
             currentWave++;
+            enemyInGameCounter = 0; // Reset de teller aan het begin van de wave
             UpdateLabels();
             EnemySpawner.instance.StartWave(currentWave);
         }
@@ -63,7 +88,6 @@ public class GameManager : MonoBehaviour
     public void EndWave()
     {
         waveActive = false;
-        topMenu.EnableWaveButton();
     }
 
     private void UpdateLabels()
