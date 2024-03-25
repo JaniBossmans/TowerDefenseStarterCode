@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/IntroMenu.uss?fileID=7433441132597879392&amp;guid=2da4e8837a21a344a9a18ad9021bd6b8&amp;type=3#IntroMenu" />
+    <ui:VisualElement name="IntroMenu" class="Screen" style="background-image: url(&apos;project://database/Assets/Art/UnityBackground.jpg?fileID=2800000&amp;guid=554be4c267eb52e4eac9f213511d0b8d&amp;type=3#UnityBackground&apos;); border-top-color: rgba(247, 85, 85, 0);">
+        <ui:Label tabindex="-1" text="Tower Defense Tycoon" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Titel" style="white-space: nowrap; -unity-text-align: middle-center; height: 45px; font-size: 40px; -unity-text-outline-color: rgba(255, 255, 255, 0); background-color: rgba(255, 0, 0, 0); color: rgb(0, 255, 246);" />
+        <ui:TextField picking-mode="Ignore" label="Name:" value="Give Name" name="Name" style="margin-top: 70px; width: 367px; justify-content: flex-start; margin-left: 170px; background-color: rgba(255, 0, 0, 0); -unity-text-outline-color: rgba(255, 0, 0, 0); white-space: normal; -unity-text-align: lower-left; -unity-font-style: bold;" />
+        <ui:Button text="Play" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Play-Button" class="Button" style="margin-left: 170px; -unity-font-style: bold;" />
+        <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Quit-Button" class="Button" style="margin-top: 20px; width: 340px; margin-left: 170px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>
