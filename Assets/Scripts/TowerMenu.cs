@@ -15,6 +15,24 @@ public class TowerMenu : MonoBehaviour
 
     private ConstructionSite selectedSite;
 
+    void Awake()
+    {
+        // Check if an instance of TowerMenu already exists
+        if (Instance == null)
+        {
+            // This is the first instance - make it the Singleton
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else if (Instance != this)
+        {
+            // This means a different instance is already the Singleton - destroy this one
+            Destroy(gameObject);
+        }
+    }
+
+    public static TowerMenu Instance { get; private set; }
+
     void Start()
     {
         root = GetComponent<UIDocument>().rootVisualElement;
@@ -51,6 +69,8 @@ public class TowerMenu : MonoBehaviour
         }
 
         root.visible = false;
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void OnArcherButtonClicked()

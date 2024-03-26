@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/IntroScene.unity
     guid: cc836f505af54a842ac38c8cf42a2b9d
   - enabled: 1
     path: Assets/Art/Isometric Tower Defense Pack/Scene/GameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HighScoreScene.unity
     guid: edd432ae8a8e47b4c8b430f3115f9a42
+  - enabled: 1
+    path: Assets/Art/Isometric Tower Defense Pack/Scene/IntroScene.unity
+    guid: b9a5eac8276f28d4cb604ad850be926f
+  - enabled: 1
+    path: Assets/Art/Isometric Tower Defense Pack/Scene/HighScoreScene.unity
+    guid: 7f23a918f218db141808040452f05961
   m_configObjects: {}

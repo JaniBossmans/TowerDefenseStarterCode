@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/HighScoreManager.uss?fileID=7433441132597879392&amp;guid=a86f5b6b9003d3446be5a1b6cfe3e08b&amp;type=3#HighScoreManager" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Art/UnityBackground.jpg?fileID=2800000&amp;guid=554be4c267eb52e4eac9f213511d0b8d&amp;type=3#UnityBackground&apos;); width: 878px; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; width: 489px; margin-right: 0; padding-right: 0; padding-left: 0; background-color: rgba(0, 0, 0, 0.58); padding-top: 0; padding-bottom: 0; left: 110px; height: 438px;">
+            <ui:Label tabindex="-1" text="Game Over" parse-escape-sequences="true" display-tooltip-when-elided="true" class="Label" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Win-Lose_Label" class="Label" style="font-size: 16px; -unity-font-style: normal;" />
+            <ui:Label tabindex="-1" text="HighScores:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="Label" style="margin-top: 40px;" />
+            <ui:Label tabindex="-1" text="..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HS1" class="Label HS" />
+            <ui:Label tabindex="-1" text="..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HS2" class="HS_Label HS" style="font-size: 16px; -unity-font-style: normal; -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=e8d8d46cd1af4d440981456019001e31&amp;type=3#NotInter-Regular&apos;); align-items: auto; align-self: center; color: rgb(255, 255, 255);" />
+            <ui:Label tabindex="-1" text="..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HS3" style="font-size: 16px; -unity-font-style: normal; align-self: center; color: rgb(255, 255, 255);" />
+            <ui:Label tabindex="-1" text="..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HS4" style="font-size: 16px; -unity-font-style: normal; align-items: center; color: rgb(255, 255, 255); -unity-text-align: upper-center;" />
+            <ui:Label tabindex="-1" text="..." parse-escape-sequences="true" display-tooltip-when-elided="true" name="HS5" style="font-size: 16px; -unity-font-style: normal; align-self: center; color: rgb(255, 255, 255);" />
+            <ui:Button text="Play Again" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Play_Again" class="Button" style="right: 174px; left: 169px; top: 325px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,12 +43,12 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    void StartGame()
+    public void StartGame()
     {
         credits = 200;
         health = 10;
         currentWave = 0;
-        waveActive = false; // Zorg ervoor dat waveActive false is bij het starten van het spel
+        waveActive = false;
         UpdateLabels();
     }
 
@@ -59,17 +60,18 @@ public class GameManager : MonoBehaviour
     public void RemoveInGameEnemy()
     {
         enemyInGameCounter--;
-        if (!waveActive && enemyInGameCounter <= 0)
+        if (enemyInGameCounter <= 0 && waveActive)
         {
-            if (!waveActive && enemyInGameCounter <= 0) 
+            EndWave();
+            topMenu.EnableWaveButton();
+        }
+        else if (enemyInGameCounter <= 0) // This implies waveActive is false
+        {
+            if (HighScoreManager.Instance.GameIsWon)
             {
-                // Logica voor het einde van de game
+                HighScoreManager.Instance.AddHighScore(credits, HighScoreManager.Instance.PlayerName);
             }
-            else
-            {
-                // Activeer de wave button in het top menu
-                topMenu.EnableWaveButton();
-            }
+            SceneManager.LoadScene("HighScoreScene");
         }
     }
 
@@ -102,6 +104,11 @@ public class GameManager : MonoBehaviour
     {
         health -= 1;
         topMenu.SetGateHealthLabel("Health: " + health);
+        if (health <= 0)
+        {
+            HighScoreManager.Instance.GameIsWon = false;
+            SceneManager.LoadScene("HighScoreScene");
+        }
     }
 
     public void AddCredits(int amount)
