@@ -41,33 +41,37 @@ public class Tower : MonoBehaviour
 
     void Attack()
     {
-        // Find all enemies within the attack range
+        // Vind alle vijanden binnen het aanvalsbereik
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, attackRange);
 
-        // Check each enemy and attack the first one found
+        // Check elke vijand en val de eerste aan die je vindt
         foreach (Collider2D enemyCollider in enemies)
         {
             if (enemyCollider.CompareTag("Enemy"))
             {
                 GameObject enemy = enemyCollider.gameObject;
 
-                // Instantiate the bullet prefab
+                // Instantieer het kogel prefab
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
-                // Set the projectile properties
+                // Configureer de projectieleigenschappen
                 Projectile projectile = bullet.GetComponent<Projectile>();
                 if (projectile != null)
                 {
                     projectile.target = enemy.transform;
                     projectile.damage = attackDamage;
+
+                    // Speel het torengeluid af na het schieten
+                    SoundManager.Instance.PlayTowerSound(type);
                 }
 
-                // Set the bullet size
+                // Stel de grootte van de kogel in
                 bullet.transform.localScale = new Vector3(attackSize, attackSize, 1f);
 
-                // Break after attacking the first enemy found
+                // Onderbreek na de eerste gevonden vijand
                 break;
             }
         }
     }
+
 }

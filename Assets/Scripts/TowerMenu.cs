@@ -75,21 +75,26 @@ public class TowerMenu : MonoBehaviour
 
     private void OnArcherButtonClicked()
     {
+        SoundManager.Instance.PlayUISound();
         GameManager.Instance.Build(Enums.TowerType.Archer, Enums.SiteLevel.Level1);
     }
 
     private void OnSwordButtonClicked()
     {
+        SoundManager.Instance.PlayUISound();
         GameManager.Instance.Build(Enums.TowerType.Sword, Enums.SiteLevel.Level1);
     }
 
     private void OnWizardButtonClicked()
     {
+        SoundManager.Instance.PlayUISound();
         GameManager.Instance.Build(Enums.TowerType.Wizard, Enums.SiteLevel.Level1);
     }
 
     private void OnUpdateButtonClicked()
     {
+        SoundManager.Instance.PlayUISound();
+
         if (selectedSite == null) return;
 
         Enums.SiteLevel nextLevel = selectedSite.Level + 1; // Verhoog het level met één.
@@ -98,6 +103,8 @@ public class TowerMenu : MonoBehaviour
 
     private void OnDestroyButtonClicked()
     {
+        SoundManager.Instance.PlayUISound();
+
         if (selectedSite == null) return;
 
         // Roep de nieuwe DestroyTower methode aan

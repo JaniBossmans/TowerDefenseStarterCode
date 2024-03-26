@@ -31,12 +31,13 @@ public class IntroMenu : MonoBehaviour
 
     private void OnPlayButtonClick()
     {
-        // Vervang "GameScene" met de naam van de scene die je wilt laden
+        SoundManager.Instance.PlayUISound();
         SceneManager.LoadScene("GameScene");
     }
 
     private void OnQuitButtonClick()
     {
+        SoundManager.Instance.PlayUISound();
         // Application.Quit does not work in the editor, so this will be empty for now
     }
 

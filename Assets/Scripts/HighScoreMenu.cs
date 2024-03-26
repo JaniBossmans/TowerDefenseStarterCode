@@ -39,6 +39,8 @@ public class HighScoreMenu : MonoBehaviour
 
     private void OnPlayAgainClicked()
     {
+        SoundManager.Instance.PlayUISound();
+
         if (HighScoreManager.Instance == null)
         {
             Debug.LogError("HighScoreManager instance is null.");

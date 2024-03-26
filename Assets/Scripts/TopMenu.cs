@@ -51,6 +51,7 @@ public class TopMenu : MonoBehaviour
 
     private void OnPlayButtonClicked()
     {
+        SoundManager.Instance.PlayUISound();
         GameManager.Instance.StartWave();
         playButton.SetEnabled(false);
     }
